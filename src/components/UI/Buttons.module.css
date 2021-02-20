@@ -1,0 +1,21 @@
+.Link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.LinkOutline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.LinkOutline:hover {
+  text-decoration: none;
+}
