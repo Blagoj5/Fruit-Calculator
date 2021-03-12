@@ -29,10 +29,47 @@ export interface FifthFormProps extends RouteChildrenProps {
   dispatch: DispatchFunction<typeof initialState>;
 }
 
+const lnObjGeneratorStandard = (ln: number) => ({
+  header: [
+    `Let's see how subtraction and addition is done!`,
+    `Ајде да видиме како се прави одземање и собирање!`,
+  ][ln],
+  header2: [
+    `Choose values to see how the final result will change `,
+    `Изберете вредности во полињата долу за да видите како ќе се промени конечниот резултат`,
+  ][ln],
+  btnText2: ['Previous', 'Претходно'][ln],
+  btnText: ['Next', 'Следно'][ln],
+});
+
+const lnObjGenerator = (
+  name: string,
+  ln: 0 | 1,
+  operations: {
+    operator: string;
+    operand: number;
+    operand2: number;
+    fruit: string;
+  }
+) => ({
+  helperTextFruits: [
+    `${name}, you have ${operations.operand} ${operations.fruit}s and someone ${
+      operations.operator === '+' ? 'gives' : 'takes from'
+    } you ${operations.operand2} ${
+      operations.fruit
+    }s. How many do you have now?`,
+    `${name}, имаш ${operations.operand} ${operations.fruit}s и некој ти  ${
+      operations.operator === '+' ? 'земе' : 'даде'
+    } ${operations.operand2} ${operations.fruit}s. Колку ${
+      operations.fruit
+    }s имаш?`,
+  ][ln],
+});
+
 export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
   // This is how you handle useSelector with ypescript
   // eslint-disable-next-line no-restricted-globals
-  const { name, fruit, correctnessSimple } = useSelector<
+  const { name, fruit, correctnessSimple, language } = useSelector<
     typeof initialState,
     typeof initialState
   >((state) => state);
@@ -43,6 +80,7 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
   const previousEq = useRef<EqArr | null>();
   const fruitRef = useRef<HTMLImageElement>(null);
 
+  const lnObjBasic = lnObjGeneratorStandard(language);
   return (
     <MainForm autoHeight>
       {name ? (
@@ -56,10 +94,10 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
           </Text>
           <Box textAlign='center' mb={14} mt={4}>
             <Heading mb={3} fontSize={generateCommonResponsive('xl', '3xl')}>
-              {`Let's see how subtraction and addition is done!`}
+              {lnObjBasic.header}
             </Heading>
             <Heading mb={3} fontSize={generateCommonResponsive('xl', '3xl')}>
-              Choose values to see how the final result will change
+              {lnObjBasic.header2}
             </Heading>
           </Box>
           <Flex w='100%' minH='75%' direction='column'>
@@ -136,6 +174,12 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
                 }}
               >
                 {({ handleSubmit, values }) => {
+                  const lnObj = lnObjGenerator(name, language, {
+                    fruit: fruit || 'apple',
+                    operand: values.operand,
+                    operand2: values.operand2,
+                    operator: values.operator,
+                  });
                   return (
                     <Form
                       style={{ width: '100%' }}
@@ -207,13 +251,14 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
                         mb={4}
                       >
                         <Text textAlign='center'>
-                          {`${name}, you have ${
+                          {/* {`${name}, you have ${
                             values.operand
                           } ${fruit}s and someone ${
                             values.operator === '+' ? 'gives' : 'takes from'
                           } you ${
                             values.operand2
-                          } ${fruit}s. How many do you have now?`}
+                          } ${fruit}s. How many do you have now?`} */}
+                          {lnObj.helperTextFruits}
                         </Text>
                       </Box>
                       <FruitsDisplay
@@ -235,7 +280,7 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
                 alignSelf='flex-start'
                 leftIcon={<ArrowBackIcon />}
               >
-                Previous
+                {lnObjBasic.btnText2}
               </PrimaryButton>
               {guesses >= 3 ? (
                 <PrimaryButton
@@ -246,7 +291,7 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
                   alignSelf='flex-end'
                   rightIcon={<ArrowForwardIcon />}
                 >
-                  Next
+                  {lnObjBasic.btnText}
                 </PrimaryButton>
               ) : null}
             </Flex>

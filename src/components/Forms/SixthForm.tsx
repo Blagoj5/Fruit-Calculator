@@ -29,12 +29,48 @@ export interface SixthFormProps extends RouteChildrenProps {
   dispatch: DispatchFunction<typeof initialState>;
 }
 
+const lnObjGeneratorStandard = (ln: number) => ({
+  header: [
+    `Let's see how multiplication and division is done!`,
+    `Ајде да видиме како се прави множење и делење!`,
+  ][ln],
+  header2: [
+    `Choose values to see how the final result will change `,
+    `Изберете вредности во полињата долу за да видите како ќе се промени конечниот резултат`,
+  ][ln],
+  btnText2: ['Previous', 'Претходно'][ln],
+  btnText: ['Final Results', 'Резултати'][ln],
+});
+
+const lnObjGenerator = (
+  name: string,
+  ln: 0 | 1,
+  values: {
+    operator: string;
+    operand: number;
+    operand2: number;
+    fruit: string;
+  }
+) => ({
+  helperTextFruits: [
+    values.operator === '*'
+      ? `${name}, you have ${values.operand} packets of ${values.operand2} ${values.fruit}s. How many do you have now?`
+      : `${name}, you have ${values.operand} ${values.fruit}s separated in ${values.operand2} packs, how many ${values.fruit}s does each pack have?`,
+    values.operator === '*'
+      ? `${name}, имаш ${values.operand} пакети од по ${values.operand2} ${values.fruit}s. Колку имаш сега?`
+      : `${name}, имаш ${values.operand} ${values.fruit}s поделени во ${values.operand2} пакети, Колку ${values.fruit}s има секој од пакетите?`,
+  ][ln],
+});
+
 export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
   // This is how you handle useSelector with ypescript
-  const { name, fruit, correctnessAdvanced, correctnessSimple } = useSelector<
-    typeof initialState,
-    typeof initialState
-  >((state) => state);
+  const {
+    name,
+    fruit,
+    correctnessAdvanced,
+    correctnessSimple,
+    language,
+  } = useSelector<typeof initialState, typeof initialState>((state) => state);
   const [alert, setAlert] = useState<'success' | 'error' | null>(null);
   const [guesses, setGuesses] = useState<number>(
     correctnessAdvanced?.matches || 0
@@ -42,6 +78,7 @@ export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
   const previousEq = useRef<EqArr | null>();
   const fruitRef = useRef<HTMLImageElement>(null);
 
+  const lnObjBasic = lnObjGeneratorStandard(language);
   return (
     <MainForm autoHeight>
       {name && correctnessSimple ? (
@@ -55,10 +92,10 @@ export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
           </Text>
           <Box textAlign='center' mb={14} mt={4}>
             <Heading mb={3} fontSize={generateCommonResponsive('xl', '3xl')}>
-              Let's see how multiplication and divison is done!
+              {lnObjBasic.header}
             </Heading>
             <Heading mb={3} fontSize={generateCommonResponsive('xl', '3xl')}>
-              Choose values to see how the final result will change
+              {lnObjBasic.header2}
             </Heading>
           </Box>
           <Flex w='100%' minH='75%' direction='column'>
@@ -135,6 +172,13 @@ export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
                 }}
               >
                 {({ handleSubmit, values }) => {
+                  const lnObj = lnObjGenerator(name, language, {
+                    fruit: fruit || 'apple',
+                    operand: values.operand,
+                    operand2: values.operand2,
+                    operator: values.operator,
+                  });
+
                   return (
                     <Form
                       style={{ width: '100%' }}
@@ -207,11 +251,10 @@ export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
                         mb={4}
                       >
                         <Text textAlign='center'>
-                          {`${name},  someone ${
-                            values.operator === '*' ? 'gives' : 'takes from'
-                          } you ${values.operand2} packets of  ${
-                            values.operand
-                          } ${fruit}s. How many do you have now?`}
+                          {/* {values.operator === '*'
+                            ? `${name}, you have ${values.operand} packets of ${values.operand2} ${fruit}. How many do you have now?`
+                            : `${name}, you have ${values.operand} ${fruit} separated in ${values.operand2} packs, how many apples does each pack have?`} */}
+                          {lnObj.helperTextFruits}
                         </Text>
                       </Box>
                       <FruitsDisplay
@@ -234,7 +277,7 @@ export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
                 alignSelf='flex-start'
                 leftIcon={<ArrowBackIcon />}
               >
-                Previous
+                {lnObjBasic.btnText2}
               </PrimaryButton>
               {guesses >= 3 ? (
                 <PrimaryButton
@@ -245,7 +288,7 @@ export const SixthForm: React.FC<SixthFormProps> = ({ dispatch, history }) => {
                   alignSelf='flex-end'
                   rightIcon={<ArrowForwardIcon />}
                 >
-                  Final Results
+                  {lnObjBasic.btnText}
                 </PrimaryButton>
               ) : null}
             </Flex>

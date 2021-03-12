@@ -23,6 +23,16 @@ import { initialState } from '../store/reducers/main';
 
 interface MeProps {}
 
+const lnObjGenerator = (ln: number) => ({
+  name: ['Name', 'Име'][ln],
+  surname: ['Surname', 'Презиме'][ln],
+  age: ['Age', 'Години'][ln],
+  city: ['City', 'Град'][ln],
+  hits: ['Hits', 'Точни погодоци'][ln],
+  misses: ['Misses', 'Грешни погодоци'][ln],
+  accuracity: ['Accuracity', 'Точност'][ln],
+});
+
 const Me: React.FC<MeProps> = ({}) => {
   const {
     name,
@@ -31,9 +41,11 @@ const Me: React.FC<MeProps> = ({}) => {
     correctnessSimple,
     age,
     city,
+    language,
   } = useSelector<typeof initialState, typeof initialState>((state) => state);
   const dispatch = useDispatch();
 
+  const lnObj = lnObjGenerator(language);
   return (
     <MainForm autoHeight>
       <Box borderBottom='1px solid gray' borderColor='gray.300' p={4}>
@@ -55,7 +67,7 @@ const Me: React.FC<MeProps> = ({}) => {
         <List spacing={3}>
           <ListItem fontSize='lg'>
             <ListIcon as={ArrowForwardIcon} />
-            Name:{' '}
+            {lnObj.name}:{' '}
             {name ? (
               <Text as='span' fontWeight='600'>
                 {name}{' '}
@@ -66,7 +78,7 @@ const Me: React.FC<MeProps> = ({}) => {
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={ArrowForwardIcon} />
-            Surname:{' '}
+            {lnObj.surname}:{' '}
             {surname ? (
               <Text as='span' fontWeight='600'>
                 {surname}
@@ -77,7 +89,7 @@ const Me: React.FC<MeProps> = ({}) => {
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={ArrowForwardIcon} />
-            Age:{' '}
+            {lnObj.age}:{' '}
             {age ? (
               <Text as='span' fontWeight='600'>
                 {age}
@@ -88,7 +100,7 @@ const Me: React.FC<MeProps> = ({}) => {
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={ArrowForwardIcon} />
-            City:{' '}
+            {lnObj.city}:{' '}
             {city ? (
               <Text as='span' fontWeight='600'>
                 {city}
@@ -106,15 +118,15 @@ const Me: React.FC<MeProps> = ({}) => {
         <List spacing={3}>
           <ListItem fontSize='lg'>
             <ListIcon as={CheckCircleIcon} color='green.500' />
-            Hits: {correctnessSimple?.matches || 0}
+            {lnObj.hits}: {correctnessSimple?.matches || 0}
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={WarningTwoIcon} color='red.500' />
-            Misses: {correctnessSimple?.misses || 0}
+            {lnObj.misses}: {correctnessSimple?.misses || 0}
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={InfoIcon} color='yellow.500' />
-            Accuracity: {correctnessSimple?.ratio?.toFixed(2) || 0}
+            {lnObj.accuracity}: {correctnessSimple?.ratio?.toFixed(2) || 0}
           </ListItem>
         </List>
       </Box>
@@ -126,15 +138,15 @@ const Me: React.FC<MeProps> = ({}) => {
         <List spacing={3}>
           <ListItem fontSize='lg'>
             <ListIcon as={CheckCircleIcon} color='green.500' />
-            Hits: {correctnessAdvanced?.matches || 0}
+            {lnObj.hits}: {correctnessAdvanced?.matches || 0}
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={WarningTwoIcon} color='red.500' />
-            Misses: {correctnessAdvanced?.misses || 0}
+            {lnObj.misses}: {correctnessAdvanced?.misses || 0}
           </ListItem>
           <ListItem fontSize='lg'>
             <ListIcon as={InfoIcon} color='yellow.500' />
-            Accuracity: {correctnessAdvanced?.ratio?.toFixed(2) || 0}
+            {lnObj.accuracity}: {correctnessAdvanced?.ratio?.toFixed(2) || 0}
           </ListItem>
         </List>
       </Box>
