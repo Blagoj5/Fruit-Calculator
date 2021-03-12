@@ -3,6 +3,7 @@ import { ActionType } from '../../types/redux';
 import { ACTION_TYPES } from '../actions/main';
 
 export const initialState: {
+  language: 0 | 1;
   name: string;
   surname: string;
   age: number;
@@ -21,7 +22,7 @@ export const initialState: {
     matches?: number;
     ratio?: number;
   };
-} = { name: '', surname: '', age: 0, city: '' };
+} = { name: '', surname: '', age: 0, city: '', language: 0 };
 
 export const reducer = (
   state = initialState,
@@ -32,12 +33,17 @@ export const reducer = (
       calculator?: 'simple' | 'advanced';
     };
   }
-) => {
+): typeof state => {
   switch (action.type) {
     case 'INITIAL_LOAD':
       const initalObject = JSON.parse(localStorage.getItem('infos') || 'null');
 
       return initalObject || state;
+    case 'CHANGE_LANGUAGE':
+      return {
+        ...state,
+        language: action.payload?.language || 0,
+      };
     case 'BATCH':
       const objectToBeStored = {
         ...state,

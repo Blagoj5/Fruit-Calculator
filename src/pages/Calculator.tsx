@@ -3,18 +3,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, RouteChildrenProps, Switch } from 'react-router-dom';
 // Lazy load this
-import {
-  FifthForm,
-  FirstForm,
-  FourthForm,
-  SecondForm,
-  SixthForm,
-  ThirdForm,
-} from '../components/Forms';
-
-import { MainForm } from '../components/MainForm';
+import { FifthForm } from '../components/Forms/FifthForm';
+import { FourthForm } from '../components/Forms/FourthForm';
+import { ThirdForm } from '../components/Forms/ThirdForm';
+import { FirstForm } from '../components/Forms/FirstForm';
 import { initialState } from '../store/reducers/main';
 import { DispatchFunction } from '../types/redux';
+import { SecondForm } from '../components/Forms/SecondForm';
+import { SixthForm } from '../components/Forms/SixthForm';
 
 // Experimental. Inital state types
 
@@ -26,8 +22,6 @@ interface CalculatorProps extends RouteChildrenProps {}
 // 3. Create sepearet type for dispatch funcions that accepts something similar like the code bellow
 const Calculator: React.FC<CalculatorProps> = () => {
   const dispatch = useDispatch<DispatchFunction<typeof initialState>>();
-
-  // ! logic here with useEffect to determine to which step the user is left on. If batch 1 is completed then go to step 2, if batch 3 is completed go to step 4 etc..
 
   return (
     <Switch>

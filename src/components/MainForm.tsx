@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
+import { generateCommonResponsive } from '../utils/generateCommonResponsive';
 
 interface MainFormProps {
   children: JSX.Element | JSX.Element[] | string;
@@ -15,11 +16,12 @@ export const MainForm: React.FC<MainFormProps> = ({ children, autoHeight }) => {
       flexDirection='column'
       boxShadow='2xl'
       p={4}
-      height={autoHeight ? 'auto' : '600px'}
+      h={generateCommonResponsive('auto', autoHeight ? 'auto' : '600px')}
       justifyContent='flex-start'
       bg='whiteAlpha.900'
       borderRadius='md'
       pos='relative'
+      overflow='hidden'
     >
       {children}
     </Box>

@@ -89,7 +89,8 @@ export const FruitsDisplay: React.FC<FruitsDisplayProps> = ({
         ))}
         {decimalValue && fruitArray2.length === 0 ? (
           <Box flexBasis='auto' fontWeight={600} fontSize='lg' minW='107.5px'>
-            and {`${decimalValue}-tenths of ${fruit}`}
+            and{' '}
+            {`${decimalValue}-tenths of whole ${fruit} separated in 10 pieces`}
           </Box>
         ) : null}
       </HStack>
@@ -116,7 +117,8 @@ export const FruitsDisplay: React.FC<FruitsDisplayProps> = ({
           ))}
           {decimalValue ? (
             <Box flexBasis='auto' fontWeight={600} fontSize='lg' minW='107.5px'>
-              and {`${decimalValue}-tenths of ${fruit}`}
+              and{' '}
+              {`${decimalValue}-tenths of a whole ${fruit} separated in 10 pieces`}
             </Box>
           ) : null}
         </HStack>
