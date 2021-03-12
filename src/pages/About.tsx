@@ -1,13 +1,14 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import { MainForm } from '../components/MainForm';
+import { generateCommonResponsive } from '../utils/generateCommonResponsive';
 
 interface AboutProps {}
 
 const About: React.FC<AboutProps> = ({}) => {
   return (
     <MainForm>
-      <Box w='50%' mx='auto' mt={16}>
+      <Box w={generateCommonResponsive('100%', '50%')} mx='auto' mt={16}>
         <Heading fontSize='3xl' textAlign='center' mb={6}>
           About Us
         </Heading>

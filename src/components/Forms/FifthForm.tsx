@@ -23,6 +23,7 @@ import { calculator, Operator } from '../../utils/calculator';
 import { EqArr, validateEq } from '../../utils/validateEq';
 import { FruitsDisplay } from '../FruitsDisplay';
 import { storeResults } from '../../store/actions/main';
+import { generateCommonResponsive } from '../../utils/generateCommonResponsive';
 
 export interface FifthFormProps extends RouteChildrenProps {
   dispatch: DispatchFunction<typeof initialState>;
@@ -54,10 +55,10 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
             (get 3 correct guesses to continue)
           </Text>
           <Box textAlign='center' mb={14} mt={4}>
-            <Heading mb={3}>
+            <Heading mb={3} fontSize={generateCommonResponsive('xl', '3xl')}>
               {`Let's see how subtraction and addition is done!`}
             </Heading>
-            <Heading mb={3}>
+            <Heading mb={3} fontSize={generateCommonResponsive('xl', '3xl')}>
               Choose values to see how the final result will change
             </Heading>
           </Box>
@@ -144,9 +145,12 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
                       }}
                     >
                       <HStack
-                        w='70%'
+                        w={generateCommonResponsive('100%', '70%')}
                         m='auto'
-                        spacing={10}
+                        spacing={generateCommonResponsive(1, 10)}
+                        flexWrap={
+                          generateCommonResponsive('wrap', 'nowrap') as any
+                        }
                         alignItems='flex-start'
                       >
                         <FieldNumber label='' id='operand' min={0} />
@@ -167,7 +171,15 @@ export const FifthForm: React.FC<FifthFormProps> = ({ dispatch, history }) => {
                           ]}
                         />
                         <FieldNumber label='' id='operand2' min={0} />
-                        <Text fontWeight='bold' fontSize='2xl' pt={2}>
+                        <Text
+                          fontWeight='bold'
+                          fontSize='2xl'
+                          pt={2}
+                          textAlign={
+                            generateCommonResponsive('center', 'left') as any
+                          }
+                          w={generateCommonResponsive('100%', 'auto') as any}
+                        >
                           =
                         </Text>
                         <FieldNumber
