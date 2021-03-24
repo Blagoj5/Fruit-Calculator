@@ -19,9 +19,10 @@ jobs:
 
       - run: ls
 
-      # Runs the Super-Linter action
-      - name: Run build and deploy
+      - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+
+      - run: npm run install
       - run: npm run deploy
