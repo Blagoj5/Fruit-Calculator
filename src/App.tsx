@@ -24,8 +24,8 @@ function App() {
       <Route path='/calculator' component={Calculator} />
       <Route path='/me' component={Me} />
       <Route path='/about' component={About} />
-      <Route component={Index} />
-      {/* <Redirect to='/' /> */}
+      {/* <Route component={Index} /> */}
+      <Redirect to='/' />
     </Switch>
   );
   return (

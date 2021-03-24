@@ -60,7 +60,7 @@ const store = createStore(reducer, composeEnhancers([sagaMiddleware]));
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename='/Fruit-Calculator'>
       <ChakraProvider>
         <React.StrictMode>
           <App />
