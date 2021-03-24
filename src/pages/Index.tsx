@@ -68,7 +68,11 @@ const Index: React.FC<IndexProps> = (...props) => {
       </Flex>
       <Box flex={{ base: 'none', lg: 2 }} w={{ base: '100%', lg: 'auto' }}>
         <AspectRatio ratio={16 / 9}>
-          <Image src='/fruit-calc.gif' h='100%' w='100%' />
+          <Image
+            src='https://user-images.githubusercontent.com/50581470/110876772-7b69a500-82d8-11eb-8bdd-42c63c6b02d0.gif'
+            h='100%'
+            w='100%'
+          />
         </AspectRatio>
       </Box>
     </Box>
