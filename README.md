@@ -5,6 +5,8 @@ Fruit calculator made for kids with special needs. It helps them to understand t
 <br />
 ![https://user-images.githubusercontent.com/50581470/110876772-7b69a500-82d8-11eb-8bdd-42c63c6b02d0.gif](https://user-images.githubusercontent.com/50581470/110876772-7b69a500-82d8-11eb-8bdd-42c63c6b02d0.gif)
 
+Hosted at: **https://blagoj5.github.io/Fruit-Calculator/**
+
 ## Technologies
 
 Technologies used:
