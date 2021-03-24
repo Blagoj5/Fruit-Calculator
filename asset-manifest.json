@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Fruit-Calculator/static/css/main.fba59f76.chunk.css",
-    "main.js": "/Fruit-Calculator/static/js/main.693b02f0.chunk.js",
-    "main.js.map": "/Fruit-Calculator/static/js/main.693b02f0.chunk.js.map",
+    "main.js": "/Fruit-Calculator/static/js/main.6145485a.chunk.js",
+    "main.js.map": "/Fruit-Calculator/static/js/main.6145485a.chunk.js.map",
     "runtime-main.js": "/Fruit-Calculator/static/js/runtime-main.c531b47a.js",
     "runtime-main.js.map": "/Fruit-Calculator/static/js/runtime-main.c531b47a.js.map",
     "static/css/2.150d169a.chunk.css": "/Fruit-Calculator/static/css/2.150d169a.chunk.css",
@@ -30,6 +30,6 @@
     "static/css/2.150d169a.chunk.css",
     "static/js/2.6daacf28.chunk.js",
     "static/css/main.fba59f76.chunk.css",
-    "static/js/main.693b02f0.chunk.js"
+    "static/js/main.6145485a.chunk.js"
   ]
 }
