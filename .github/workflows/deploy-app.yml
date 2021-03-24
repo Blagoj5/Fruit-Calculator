@@ -25,4 +25,11 @@ jobs:
           node-version: "14.x"
 
       - run: npm install
-      - run: npm run deploy
+
+      - run: npm run predeploy
+
+      - name: Deploy using gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
