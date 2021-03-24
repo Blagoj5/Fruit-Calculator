@@ -20,11 +20,12 @@ const Me = React.lazy(() => {
 function App() {
   const routes = (
     <Switch>
+      <Route path='/' exact component={Index} />
       <Route path='/calculator' component={Calculator} />
       <Route path='/me' component={Me} />
       <Route path='/about' component={About} />
-      <Route path='/' exact component={Index} />
-      <Redirect to='/' />
+      <Route component={Index} />
+      {/* <Redirect to='/' /> */}
     </Switch>
   );
   return (
