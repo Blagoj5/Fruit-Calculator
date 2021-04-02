@@ -79,7 +79,7 @@ export const FruitsDisplay: React.FC<FruitsDisplayProps> = ({
         {fruitArray.map((f) => (
           <Box flexBasis='auto' key={f} ref={fruitRef}>
             <Image
-              src={`/${fruit}.png`}
+              src={`/Fruit-Calculator/fruits/${fruit}.png`}
               h='100%'
               w='100%'
               maxH='150px'
@@ -107,7 +107,7 @@ export const FruitsDisplay: React.FC<FruitsDisplayProps> = ({
               h={fruitRef.current?.getClientRects()[0].height || 'auto'}
             >
               <Image
-                src={`/${fruit}.png`}
+                src={`/Fruit-Calculator/fruits/${fruit}.png`}
                 w='100%'
                 h='100%'
                 maxH='150px'

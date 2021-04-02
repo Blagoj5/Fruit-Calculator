@@ -22,19 +22,19 @@ const fruits: {
 }[] = [
   {
     fruit: 'banana',
-    img: '/banana.png',
+    img: `/Fruit-Calculator/fruits/banana.png`,
     text: ['Banana', 'Банана'],
     color: 'yellow',
   },
   {
     fruit: 'apple',
-    img: '/apple.png',
+    img: `/Fruit-Calculator/fruits/apple.png`,
     text: ['Apple', 'Јаболко'],
     color: 'green',
   },
   {
     fruit: 'orange',
-    img: '/orange.png',
+    img: `/Fruit-Calculator/fruits/orange.png`,
     text: ['Orange', 'Портокал'],
     color: 'orange',
   },
